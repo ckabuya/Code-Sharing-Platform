@@ -29,7 +29,7 @@ public class ApiCodeController {
      */
     @GetMapping(path = "/api/code/{id}")
     public Code getCodeAsJSON(@PathVariable Integer id) {
-        return  dbService.getCode(id);
+        return  dbService.getCode(id-1);
     }
 
 
@@ -40,15 +40,13 @@ public class ApiCodeController {
      * */
     @PostMapping(path = "/api/code/new")
     public String postCode(@RequestBody Code newCode) {
-       // code.setCode(newCode.getCode());
-        return "{\"id\":\""+dbService.addCode(newCode)+"\"}";
+        return "{\"id\":\""+ dbService.addCode(newCode)+"\"}";
     }
     /*
     GET /api/code/latest should return a JSON array with 10 most recently uploaded code snippets sorted from the newest to the oldest.
      */
     @GetMapping(path = "/api/code/latest")
     public Collection<Code> latestAPI() {
-        // code.setCode(newCode.getCode());
-        return dbService.getCodeList().stream().limit(10).collect(Collectors.toList());
+        return dbService.getCodeLatest();
     }
 }

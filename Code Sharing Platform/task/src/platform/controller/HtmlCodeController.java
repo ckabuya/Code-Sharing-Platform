@@ -28,8 +28,8 @@ public class HtmlCodeController {
      */
     @GetMapping(path = "/code/{id}")
     public ModelAndView getHTMLCode(@PathVariable Integer id) {
-        HashMap params = new HashMap<String, Object>();
-        Code code = dbService.getCode(id);
+        HashMap<String, Object> params = new HashMap<>();
+        Code code = dbService.getCode(id-1);
         params.put("date",code.getDate());
         params.put("code",code.getCode());
         return new ModelAndView("code", params);
@@ -38,8 +38,8 @@ public class HtmlCodeController {
     @GetMapping(path = "/code/latest")
     public ModelAndView latestHTML() {
         // code.setCode(newCode.getCode());
-        HashMap params = new HashMap<String, Object>();
-        params.put("snippets",dbService.getCodeList().stream().limit(10).collect(Collectors.toList()));
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("snippets",dbService.getCodeLatest());
         return new ModelAndView("snippets", params);
     }
 
@@ -48,11 +48,11 @@ public class HtmlCodeController {
      * Tags <textarea id="code_snippet"> ... </textarea> where you can paste a code snippet;
      * Title Create;
      * Button <button id="send_snippet" type="submit" onclick="send()">Submit</button>.
-     * @return
+     * @return ModelAndView
      */
     @GetMapping(path = "/code/new")
     public ModelAndView index(Model model) {
-        HashMap params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         return new ModelAndView("index",params);
     }
 }
