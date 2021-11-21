@@ -27,9 +27,9 @@ public class HtmlCodeController {
      GET /code/N should return HTML that contains the N-th uploaded code snippet.
      */
     @GetMapping(path = "/code/{id}")
-    public ModelAndView getHTMLCode(@PathVariable Integer id) {
+    public ModelAndView getHTMLCode(@PathVariable Long id) {
         HashMap<String, Object> params = new HashMap<>();
-        Code code = dbService.getCode(id-1);
+        Code code = dbService.getCode(id);
         params.put("date",code.getDate());
         params.put("code",code.getCode());
         return new ModelAndView("code", params);

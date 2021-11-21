@@ -28,8 +28,8 @@ public class ApiCodeController {
      * GET /api/code/N should return JSON with the N-th uploaded code snippet.
      */
     @GetMapping(path = "/api/code/{id}")
-    public Code getCodeAsJSON(@PathVariable Integer id) {
-        return  dbService.getCode(id-1);
+    public Code getCodeAsJSON(@PathVariable Long id) {
+        return  dbService.getCode(id);
     }
 
 
