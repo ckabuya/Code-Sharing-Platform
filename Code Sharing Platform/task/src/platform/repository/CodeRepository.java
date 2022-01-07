@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import platform.model.Code;
 
 @Repository
-public interface CodeRepository extends CrudRepository<Code,Long> {
+public interface CodeRepository extends CrudRepository<Code,String> {
 }
